@@ -1,0 +1,56 @@
+.flex {
+  flex-direction: column;
+  justify-content: center;
+  height: 50%;
+  width: 50%;
+  background-color: rgb(53, 52, 52);
+  align-items: center;
+  margin: auto;
+  margin-bottom: 30px;
+  margin-top: 20px;
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  background-color: #483d8b;
+  background-position-x: center;
+  padding: 30px;
+  color: white;
+  background-image: linear-gradient(180deg, black, rgb(88, 88, 92));
+}
+
+#table1 {
+  width: 105%;
+}
+
+#table1 th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: white;
+}
+
+.userorder {
+  color: white;
+  margin: 20px;
+
+}
+
+.userid{
+  margin: 20px;
+}
+
+.name{
+  margin: 20px;
+
+}
+.orderis{
+  margin: 20px;
+
+}
+
+.grandtotal{
+  margin: 20px;
+
+}
