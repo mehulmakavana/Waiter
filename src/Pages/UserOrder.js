@@ -1,55 +1,59 @@
 import React, { Component } from "react";
 import "./UserOrder.css";
+import axios from 'axios';
+
 
 export class UserOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: [],
+
+      orders: [],
+      OrderIs: null,
+      loading:true
     };
   }
 
-  async componentDidMount() {
-    const url = "http://localhost:8020/order/getorders";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ people: data.orders, loading: false });
-    this.searchArray = data;
+  handleOrderIs(e) {
+    let OrderIs = e.target.value
+    this.setState({ OrderIs: OrderIs })
+  }
+
+  handleUpload(e) {
+    let OrderIs = this.state.OrderIs
+    let formdata = new FormData()
+
+    formdata.append('OrderIs', OrderIs)
+
+    axios({
+      url: `http://localhost:8020/order/list`,
+      method: "POST",
+      headers: {
+        authorization: `your token`
+      },
+      data: formdata
+    })
+      .then(res => {
+        const orders = res.data;
+        this.setState({ orders });
+      })
+
   }
 
   renderTableData() {
-    return this.state.people.map((data) => {
-      const { _id, grandTotal, name, OrderIs, paymentMethod, userId,qty } = data;
-      return (
-        <tr key={_id}>
-          <div className="userorder">
-          <td>
-            
-            <div className="userid">{userId}</div>
-          </td>
-          <td>
-            <div className="name">{name}</div>
-          </td>
 
-          <td>
-            <div className="orderis">{OrderIs}</div>
-          </td>
-
-          <td>
-            <div className="grandtotal">{grandTotal}</div>
-          </td>
-
-          <td>
-            <div className="payment">{paymentMethod}</div>
-          </td>
-          </div>
-        </tr>
-      );
-    });
+    this.state.orders.map(list => <div>
+      <div>{list.name}</div>
+    </div>
+    )
   }
 
   render() {
+    const { id } = this.state;
+
     return (
+
+
       <div>
         <h1>Orders</h1>
 
@@ -65,7 +69,18 @@ export class UserOrder extends Component {
 
               </tr>
             </table>
+
+            
           </div>
+
+          <div className="text1">
+            <input type="text" className="text2" name="OrderIs" onChange={(e) => this.handleOrderIs(e)} />
+          </div>
+
+          <div className="button1">
+            <button className="btn1" onClick={(e) => this.handleUpload(e)}>Upload</button>
+          </div>
+        </div>
 
           <div>
             <table id="students1">
@@ -73,7 +88,7 @@ export class UserOrder extends Component {
             </table>
           </div>
         </div>
-      </div>
+     
     );
   }
 }
