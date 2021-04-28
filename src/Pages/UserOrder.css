@@ -31,26 +31,35 @@ h1 {
   color: white;
 }
 
-.userorder {
-  color: white;
+ .pi{
   margin: 20px;
+  margin-left: 500px;
+}
+
+.qty{
+  margin: 20px;
+  margin-left: 100px;
+
+
+
+}
+.prt{
+  margin: 20px;
+  margin-left: 150px;
 
 }
 
-.userid{
+.prc{
   margin: 20px;
-}
-
-.name{
-  margin: 20px;
-
-}
-.orderis{
-  margin: 20px;
+  margin-left: 180px; 
 
 }
 
-.grandtotal{
+.ttl{
   margin: 20px;
+  margin-left: 115px;
 
 }
+
+
+

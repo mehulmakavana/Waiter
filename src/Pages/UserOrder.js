@@ -1,94 +1,80 @@
 import React, { Component } from "react";
 import "./UserOrder.css";
-import axios from 'axios';
-
 
 export class UserOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-      orders: [],
-      OrderIs: null,
-      loading:true
+      AllOrder: [],
+      loading: true,
     };
   }
 
-  handleOrderIs(e) {
-    let OrderIs = e.target.value
-    this.setState({ OrderIs: OrderIs })
-  }
-
-  handleUpload(e) {
-    let OrderIs = this.state.OrderIs
-    let formdata = new FormData()
-
-    formdata.append('OrderIs', OrderIs)
-
-    axios({
-      url: `http://localhost:8020/order/list`,
-      method: "POST",
-      headers: {
-        authorization: `your token`
-      },
-      data: formdata
-    })
-      .then(res => {
-        const orders = res.data;
-        this.setState({ orders });
-      })
-
-  }
-
-  renderTableData() {
-
-    this.state.orders.map(list => <div>
-      <div>{list.name}</div>
-    </div>
-    )
+  async componentDidMount() {
+    try {
+      const url = "http://localhost:8020/order/list";
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({
+          OrderIs: "Pending",
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      const data = await response.json();
+      this.setState({ AllOrder: data.list });
+      this.searchArray = data;
+    } catch (err) {}
   }
 
   render() {
-    const { id } = this.state;
-
     return (
-
-
       <div>
         <h1>Orders</h1>
 
         <div className="flex">
-          <div className="content">
-            <table id="table1">
-              <tr>
-                <th>User-Id</th>
-                <th>Name</th>
-                <th>Order-Is</th>
-                <th>Grand-Total</th>
-                <th>Payment Method</th>
-
-              </tr>
-            </table>
-
-            
-          </div>
-
-          <div className="text1">
-            <input type="text" className="text2" name="OrderIs" onChange={(e) => this.handleOrderIs(e)} />
-          </div>
-
-          <div className="button1">
-            <button className="btn1" onClick={(e) => this.handleUpload(e)}>Upload</button>
-          </div>
+          <table id="table1">
+            <tr>
+              <th>ProductId</th>
+              <th>Qty</th>
+              <th>Priority</th>
+              <th>Price</th>
+              <th>Total</th>
+            </tr>
+          </table>
         </div>
 
-          <div>
-            <table id="students1">
-              <tbody>{this.renderTableData()}</tbody>
-            </table>
-          </div>
+        <div>
+          {this.state.AllOrder.map((order) => (
+            <div key={order._id}>
+              {order.items.map((item) => (
+                <div key={item._id}>
+                  <table className="all">
+                    <tr >
+                      <td>
+                        <div className="pi">{item.productId}</div>
+                      </td>                      
+                      <td>
+                        <div className="qty">{item.qty}</div>
+                      </td>
+                      <td>
+                        <div className="prt">{item.priority}</div>
+                      </td>
+                      <td>
+                        <div className="prc">{item.productPrice}</div>
+                      </td>
+                      <td>
+                        <div className="ttl">{item.total}</div>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              ))}
+            </div>
+          ))}
         </div>
-     
+      </div>
     );
   }
 }
