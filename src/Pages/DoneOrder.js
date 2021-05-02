@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import "./UserOrder.css";
+import "./DoneOrder.css";
 
-export class UserOrder extends Component {
+export class DoneOrder extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,7 +16,7 @@ export class UserOrder extends Component {
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify({
-          OrderIs: "Pending",
+          OrderIs: "Done",
         }),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -46,23 +46,24 @@ export class UserOrder extends Component {
         </div>
 
         <div>
-          {this.state.AllOrder.map((order) => (
-            <div key={order._id}>
-              {order.items.map((item) => (
+          {this.state.AllOrder.map((item) => (
+            <div key={item._id}>
+              <div></div>
+              {item.items.map((order) => (
                 <div key={item._id}>
                   <table className="all">
                     <tr >
                       <td>
-                        <div className="pi">{item.productId}</div>
+                        <div className="pi">{order.productId}</div>
                       </td>                      
                       <td>
-                        <div className="qty">{item.qty}</div>
+                        <div className="qty">{order.qty}</div>
                       </td>
                       <td>
-                        <div className="prt">{item.priority}</div>
+                        <div className="prt">{order.priority}</div>
                       </td>
                       <td>
-                        <div className="prc">{item.productPrice}</div>
+                        <div className="prc">{order.productPrice}</div>
                       </td>
                       <td>
                         <div className="ttl">{item.total}</div>
@@ -79,4 +80,4 @@ export class UserOrder extends Component {
   }
 }
 
-export default UserOrder;
+export default DoneOrder;
