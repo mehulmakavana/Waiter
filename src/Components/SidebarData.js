@@ -27,7 +27,6 @@ export const SidebarData = [
   },
 
 
-
   {
     title: 'User Complaints',
     path: '/UserComplaints',
