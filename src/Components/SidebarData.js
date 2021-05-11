@@ -29,7 +29,7 @@ export const SidebarData = [
 
   {
     title: 'User Complaints',
-    path: '/UserComplaints',
+    path: '/Complaints',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text',
   },

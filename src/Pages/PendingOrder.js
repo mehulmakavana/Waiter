@@ -31,42 +31,35 @@ export class PendingOrder extends Component {
   render() {
     return (
       <div>
-        <h1>Orders</h1>
-
-        <div className="flex">
-          <table id="table1">
-            <tr>
-              <th>ProductId</th>
-              <th>Qty</th>
-              <th>Priority</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </table>
-        </div>
+        <h1>Pending Orders</h1>
 
         <div>
+          <table className="pot">
+            <td>Qty</td>
+            <td>Priority</td>
+            <td>Price</td>
+            <td>Total</td>
+          </table>
+
           {this.state.AllOrder.map((order) => (
             <div key={order._id}>
-              <div></div>
+         
+
               {order.items.map((item) => (
                 <div key={item._id}>
-                  <table className="all">
-                    <tr >
+                  <table className="pot1">
+                    <tr>
                       <td>
-                        <div className="pi">{item.productId}</div>
-                      </td>                      
-                      <td>
-                        <div className="qty">{item.qty}</div>
+                        <div>{item.qty}</div>
                       </td>
                       <td>
-                        <div className="prt">{item.priority}</div>
+                        <div>{item.priority}</div>
                       </td>
                       <td>
-                        <div className="prc">{item.productPrice}</div>
+                        <div>{item.productPrice}</div>
                       </td>
                       <td>
-                        <div className="ttl">{item.total}</div>
+                        <div>{item.total}</div>
                       </td>
                     </tr>
                   </table>

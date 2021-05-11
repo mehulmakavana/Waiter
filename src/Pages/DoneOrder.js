@@ -31,7 +31,7 @@ export class DoneOrder extends Component {
   render() {
     return (
       <div>
-        <h1>Orders</h1>
+        <h1>Done Orders</h1>
 
         <div className="flex">
           <table id="table1">
@@ -48,9 +48,8 @@ export class DoneOrder extends Component {
         <div>
           {this.state.AllOrder.map((item) => (
             <div key={item._id}>
-              <div></div>
               {item.items.map((order) => (
-                <div key={item._id}>
+                <div key={order._id}>
                   <table className="all">
                     <tr >
                       <td>
@@ -66,7 +65,7 @@ export class DoneOrder extends Component {
                         <div className="prc">{order.productPrice}</div>
                       </td>
                       <td>
-                        <div className="ttl">{item.total}</div>
+                        <div className="ttl">{order.total}</div>
                       </td>
                     </tr>
                   </table>

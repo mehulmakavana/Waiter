@@ -1,66 +1,46 @@
-.flex {
-    flex-direction: column;
-    justify-content: center;
-    height: 50%;
-    width: 50%;
-    background-color: rgb(53, 52, 52);
-    align-items: center;
-    margin: auto;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    color: white;
-  }
+h1 {
+  text-align: center;
+  background-color: #483d8b;
+  background-position-x: center;
+  padding: 20px;
+  color: white;
+  background-image: linear-gradient(180deg, black, rgb(88, 88, 92));
+}
   
-  h1 {
-    text-align: center;
-    background-color: #483d8b;
-    background-position-x: center;
-    padding: 30px;
-    color: white;
-    background-image: linear-gradient(180deg, black, rgb(88, 88, 92));
-  }
-  
-  #table1 {
-    width: 105%;
-  }
-  
-  #table1 th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    color: white;
-  }
-  
-   .pi{
-    margin: 20px;
-    margin-left: 500px;
-  }
-  
-  .qty{
-    margin: 20px;
-    margin-left: 100px;
-  
-  
-  
-  }
-  .prt{
-    margin: 20px;
-    margin-left: 150px;
-  
-  }
-  
-  .prc{
-    margin: 20px;
-    margin-left: 180px; 
-  
-  }
-  
-  .ttl{
-    margin: 20px;
-    margin-left: 115px;
-  
-  }
-  
+.pot {
+  width: 100%;
+
+}
+
+.pot td {
+  padding: 10px;
+  text-align: center;
+  background-color: rgb(221, 223, 226);
+  font-size: 25px;
+
+}
+
+.pot1 {
+  width: 100%;
+}
+
+
+.pot1 td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.pot1 tr:hover {
+  background-color: #f5f5f5;
+}
+
+.pot2 td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+display: flex;
+text-align: end;
+}
   
   
   

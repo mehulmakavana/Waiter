@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListTable from './Pages/ListTable';
 import PendingOrder from './Pages/PendingOrder';
 import DoneOrder from './Pages/DoneOrder';
-import UserComplaints from './Pages/UserComplaints'
+import Complaints from './Pages/Complaints';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Route path="/" exact component={ListTable} />
         <Route path="/PendingOrder" component={PendingOrder} />
         <Route path="/DoneOrder" component={DoneOrder} />
-        <Route path="/UserComplaints" component={UserComplaints} />
+        <Route path ="/Complaints" component={Complaints} />
       </Switch>
     </Router>
   );
