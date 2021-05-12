@@ -35,20 +35,21 @@ export class PendingOrder extends Component {
 
         <div>
           <table className="pot">
+         
             <td>Qty</td>
             <td>Priority</td>
             <td>Price</td>
-            <td>Total</td>
           </table>
+
+         
 
           {this.state.AllOrder.map((order) => (
             <div key={order._id}>
-         
-
               {order.items.map((item) => (
                 <div key={item._id}>
                   <table className="pot1">
                     <tr>
+            
                       <td>
                         <div>{item.qty}</div>
                       </td>
@@ -58,12 +59,12 @@ export class PendingOrder extends Component {
                       <td>
                         <div>{item.productPrice}</div>
                       </td>
-                      <td>
-                        <div>{item.total}</div>
-                      </td>
                     </tr>
                   </table>
+                 
+                 
                 </div>
+              
               ))}
             </div>
           ))}

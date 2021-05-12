@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Complaints.scss'
+import './UserComplaints.scss'
 
-export class Complaints extends Component {
+export class UserComplaints extends Component {
 
   constructor(props) {
 
@@ -32,35 +32,37 @@ export class Complaints extends Component {
       <h1>Complaints</h1>
       <div>
       <table className="ucmt">
-       <tr>
-       <th>Title</th>
-       <th>Message</th>
-       </tr>
+       
+       <td>Title</td>
+       <td>Message</td>
+       <td>Time</td>
+  
     
-   
+     </table>
         {this.state.people.map((complaints) => (
           <div key={complaints._id}>
             <div>
            
-          
+              <table className="ucmt1">
                   <tr>
                     <td> {complaints.title}</td>
                     <td> {complaints.message}</td>
+                    <td>{complaints.created_At}</td>
                     
                   </tr>
-                 
+                  </table>
               
               </div>
 
            
           </div>
         ))}
-       </table>
+      
       </div>
     </div>
   );
 }
 }
 
-export default Complaints
+export default UserComplaints
 

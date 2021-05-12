@@ -8,7 +8,7 @@ export class ListTable extends Component {
         super(props);
         this.state = {
 
-            people: [],
+            tables: [],
 
         }
     }
@@ -19,72 +19,56 @@ export class ListTable extends Component {
         const url = "http://localhost:8020/book/tables"
         const response = await fetch(url);
         const data = await response.json();
-        this.setState({ people: data.tables, loading: false });
+        this.setState({ tables: data.tables, loading: false });
         this.searchArray = data
       }
-
      
-
-      renderTableData() {
-        return this.state.people.map((data) => {
-            const { _id, table,size,Status } = data
-            return (
-
-                <table id="table1">
-
-                <tr key={_id}>
-
-                    <td><div className="tablelist">{table}</div></td>
-
-                    <td><div className="size">{size}
-                    </div></td>
-
-                    <td><div className="status">{Status}
-                    </div></td>
-
-                </tr>
-                </table>
-            )
-        })
-    }
 
     render() {
 
         return (
 
             <div>
+        <h1>Table List</h1>
 
-                <h1>List Of Table</h1>
-
-                <div className="flex">
-
-                    <div className="content">
-
-                        <table id="table1" >
-
-                            <tr>
-                                <th>Table</th>
-                                <th>Size</th>
-                                <th>Status</th>
-                            </tr>
-
-                        </table>
-
-                    </div>
-
-                    <div>
-
-                        <table id='students1'>
-                            <tbody>
-                                {this.renderTableData()}
-                            </tbody>
-                        </table>
-                    </div>
-
+        <div>
+          <table className="tlt">
+            <td>User Id</td>
+            <td>Waiting List</td>
+            <td>Table No</td>
+            <td>Table Size</td>
+            <td>Status</td>
+          </table>
+      
+          {this.state.tables.map((list) => (
+            <div key={list._id}>
+                  <table className="tlt1">
+                    <tr>
+                      <td>
+                        <div>{list._id}</div>
+                      </td>
+                      <td>
+                        <div>{list.waiting}</div>
+                      </td>
+                      <td>
+                        <div>{list.table}</div>
+                      </td>
+                      <td>
+                        <div>{list.size}</div>
+                      </td>
+                      <td>
+                        <div>{list.Status}</div>
+                      </td>
+                    </tr>
+                  </table>
                 </div>
-            </div>
-        )
-    }
+             
+           
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ListTable

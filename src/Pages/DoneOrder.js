@@ -32,41 +32,39 @@ export class DoneOrder extends Component {
     return (
       <div>
         <h1>Done Orders</h1>
-
-        <div className="flex">
-          <table id="table1">
-            <tr>
-              <th>ProductId</th>
-              <th>Qty</th>
-              <th>Priority</th>
-              <th>Price</th>
-              <th>Total</th>
-            </tr>
-          </table>
-        </div>
-
         <div>
+          <table className="dot">
+            <td>ProductId</td>
+            <td>Qty</td>
+            <td>Priority</td>
+            <td>Price</td>
+            <td>Total</td>
+          </table>
+
           {this.state.AllOrder.map((item) => (
             <div key={item._id}>
+             
               {item.items.map((order) => (
                 <div key={order._id}>
-                  <table className="all">
-                    <tr >
+                  <table className="dot1">
+                    <tr>
                       <td>
-                        <div className="pi">{order.productId}</div>
-                      </td>                      
-                      <td>
-                        <div className="qty">{order.qty}</div>
+                        <div>{order.productId}</div>
                       </td>
                       <td>
-                        <div className="prt">{order.priority}</div>
+                        <div>{order.qty}</div>
                       </td>
                       <td>
-                        <div className="prc">{order.productPrice}</div>
+                        <div>{order.priority}</div>
                       </td>
                       <td>
-                        <div className="ttl">{order.total}</div>
+                        <div>{order.productPrice}</div>
                       </td>
+                      <td>
+                        <div>{order.total}</div>
+                      </td>
+                     
+                  
                     </tr>
                   </table>
                 </div>
