@@ -32,42 +32,52 @@ export class PendingOrder extends Component {
     return (
       <div>
         <h1>Pending Orders</h1>
+        <div className="pdoc">
+          <div className="poc">
+            <div className="poc1">
+              {this.state.AllOrder.map((order) => (
+                <div key={order._id}>
+                  <div className="pon">
+                  <div className="pon1"> Name :- {order.name}</div>
+                  <div> Time :- {order.createdAt}</div>
+                  </div>
 
-        <div>
-          <table className="pot">
-         
-            <td>Qty</td>
-            <td>Priority</td>
-            <td>Price</td>
-          </table>
-
-         
-
-          {this.state.AllOrder.map((order) => (
-            <div key={order._id}>
-              {order.items.map((item) => (
-                <div key={item._id}>
-                  <table className="pot1">
-                    <tr>
-            
-                      <td>
-                        <div>{item.qty}</div>
-                      </td>
-                      <td>
-                        <div>{item.priority}</div>
-                      </td>
-                      <td>
-                        <div>{item.productPrice}</div>
-                      </td>
-                    </tr>
+                  <table className="pot">
+                    <td>Product</td>
+                    <td>Qty</td>
+                    <td>Priority</td>
+                    <td>
+                      <div className="pp">Price(RS)</div>
+                    </td>
                   </table>
-                 
-                 
+
+                  {order.items.map((item) => (
+                    <div key={item._id}>
+                      <table className="pot1">
+                        <tr>
+                          <td>
+                            <div>{item.product_id.name}</div>
+                          </td>
+
+                          <td>
+                            <div >{item.qty}</div>
+                          </td>
+                          <td>
+                            <div>{item.priority}</div>
+                          </td>
+
+
+                          <td>
+                            <div className="pp">{item.productPrice}</div>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  ))}
                 </div>
-              
               ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     );
