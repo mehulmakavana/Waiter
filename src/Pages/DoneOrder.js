@@ -38,9 +38,9 @@ export class DoneOrder extends Component {
               {this.state.AllOrder.map((item) => (
                 <div key={item._id}>
                   <div className="don">
-                    <div className="don1"> Name :- {item.name}</div>
-                    <div className="don1"> Time :- {item.createdAt}</div>
-                    <div className="don1"> Grand Total(Rs) :- {item.grandTotal}</div>
+                    <div > Name :- {item.name}</div>
+                    <div > Time :- {item.createdAt}</div>
+                    <div > Grand Total(Rs) :- {item.grandTotal}</div>
                     
 
                   </div>
