@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './ListTable.css'
+import './ListTable.scss'
 
 class Popup extends React.Component {
   constructor(props) {
@@ -67,7 +67,7 @@ class Popup extends React.Component {
                       <table className="tot1">
                         <tr>
                           <td>
-                            <div>{item.name}</div>
+                            <div>{item.product_id.name}</div>
                           </td>
 
                           <td>
@@ -130,36 +130,36 @@ export class ListTable extends Component {
       }
      
 
-    render() {
+    render() {                     
 
         return (
 
             <div>
         <h1>Table List</h1>
 
-        <div>
+        <div className="two">
+          <div className="two1">
+            <div className="two2">
+
           <table className="tlt">
            
             <td>Table No</td>
             <td>Person</td>
-            <td>Status</td>
+           
           </table>
       
           {this.state.tables.map((list) => (
             <div key={list._id}>
                   <table className="tlt1" onClick={() => this.togglePopup(list)}>
                     <tr>
-                    
-                     
+                                        
                       <td>
                         <div>{list.table}</div>
                       </td>
                       <td>
                         <div>{list.size}</div>
                       </td>
-                      <td>
-                        <div>{list.Status}</div>
-                      </td>
+                     
                     </tr>
                   </table>
 
@@ -175,6 +175,8 @@ export class ListTable extends Component {
            
           ))}
         </div>
+      </div>
+      </div>
       </div>
     );
   }

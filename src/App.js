@@ -2,9 +2,9 @@ import './App.css'
 import Navbar from "./Components/Navbar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListTable from './Pages/ListTable';
-import PendingOrder from './Pages/PendingOrder';
-import DoneOrder from './Pages/DoneOrder';
+import Menu from './Pages/Menu';
 import UserComplaints from './Pages/UserComplaints';
+import Cart from './Pages/Cart'
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
 
       <Switch>
         <Route path="/" exact component={ListTable} />
-        <Route path="/PendingOrder" component={PendingOrder} />
-        <Route path="/DoneOrder" component={DoneOrder} />
+        <Route path="/Menu" component={Menu} />
+        <Route path="/Cart" component={Cart} />
         <Route path ="/UserComplaints" component={UserComplaints} />
       </Switch>
     </Router>

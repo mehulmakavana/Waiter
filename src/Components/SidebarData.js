@@ -13,15 +13,15 @@ export const SidebarData = [
   },
 
   {
-    title: 'Pending Order',
-    path: '/PendingOrder',
+    title: 'Menu',
+    path: '/Menu',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
 
   {
-    title: 'Done Order',
-    path: '/DoneOrder',
+    title: 'Cart',
+    path: '/Cart',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
