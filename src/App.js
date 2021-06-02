@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ListTable from './Pages/ListTable';
 import Menu from './Pages/Menu';
 import UserComplaints from './Pages/UserComplaints';
-import Cart from './Pages/Cart'
+import Cart from './Pages/Cart';
+import MakeOrder from './Pages/MakeOrder';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" exact component={ListTable} />
         <Route path="/Menu" component={Menu} />
         <Route path="/Cart" component={Cart} />
+        <Route path="/MakeOrder" component={MakeOrder} />
         <Route path ="/UserComplaints" component={UserComplaints} />
       </Switch>
     </Router>

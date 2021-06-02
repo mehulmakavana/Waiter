@@ -20,6 +20,13 @@ export const SidebarData = [
   },
 
   {
+    title: 'MakeOrder',
+    path: '/MakeOrder',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
+
+  {
     title: 'Cart',
     path: '/Cart',
     icon: <AiIcons.AiFillHome />,

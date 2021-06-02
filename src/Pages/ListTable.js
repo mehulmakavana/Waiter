@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ListTable.scss'
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class Popup extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class Popup extends React.Component {
 
   render() {
     return (
+     
       <div className="top">
         <div className="top1">
           <div className="topb">
@@ -37,7 +39,7 @@ class Popup extends React.Component {
               X
             </button>
           </div>
-
+          <Scrollbars style={{ width: 1535, height: 625}}>
           <label className="tod">Order Details</label>
 
         
@@ -91,8 +93,10 @@ class Popup extends React.Component {
 
             </div>
           ))}
+           </Scrollbars>
         </div>
       </div>
+     
     );
   }
 }
