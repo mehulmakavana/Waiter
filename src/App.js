@@ -6,6 +6,7 @@ import Menu from './Pages/Menu';
 import UserComplaints from './Pages/UserComplaints';
 import Cart from './Pages/Cart';
 import MakeOrder from './Pages/MakeOrder';
+import SendOrder from './Pages/SendOrder';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Cart" component={Cart} />
         <Route path="/MakeOrder" component={MakeOrder} />
         <Route path ="/UserComplaints" component={UserComplaints} />
+        <Route path ="/ SendOrder" component={ SendOrder} />
       </Switch>
     </Router>
   );
