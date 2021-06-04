@@ -7,6 +7,7 @@ import UserComplaints from './Pages/UserComplaints';
 import Cart from './Pages/Cart';
 import MakeOrder from './Pages/MakeOrder';
 import SendOrder from './Pages/SendOrder';
+import TableBook from './Pages/TableBook';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/MakeOrder" component={MakeOrder} />
         <Route path ="/UserComplaints" component={UserComplaints} />
         <Route path ="/ SendOrder" component={ SendOrder} />
+        <Route path ="/ TableBook" component={ TableBook} />
       </Switch>
     </Router>
   );
