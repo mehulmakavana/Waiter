@@ -12,7 +12,7 @@ class Menu extends React.Component {
       count: 0,
       priority: 1,
       quantity: 1,
-      email: "",
+      name: "",
       category: "",
       message: "",
     };
@@ -36,7 +36,7 @@ class Menu extends React.Component {
     this.searchArray = data;
   }
 
-  async addCart(_id, priority, quantity, email) {
+  async addCart(_id, priority, quantity, name) {
     try {
       const response = await fetch(
         "http://localhost:8020/cart/waiter/addtocart/" + _id,
@@ -45,7 +45,7 @@ class Menu extends React.Component {
           body: JSON.stringify({
             priority: priority,
             qty: quantity,
-            email: email,
+            name: name,
           }),
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -92,9 +92,9 @@ class Menu extends React.Component {
     });
   }
 
-  handleEmail(e) {
-    let email = e.target.value;
-    this.setState({ email: email });
+  handleName(e) {
+    let name = e.target.value;
+    this.setState({ name: name });
   }
 
   render() {
@@ -226,16 +226,30 @@ class Menu extends React.Component {
                         </div>
 
                         <div className="urel" htmlFor="Order-Name">
-                          Email Id
+                          Name 
                         </div>
                         <div>
                           <input
                             className="urel1"
                             type="text"
-                            name="email"
-                            onChange={(e) => this.handleEmail(e)}
+                            name="name"
+                            onChange={(e) => this.handleName(e)}
                           />
                         </div>
+
+                        <div className="urpn" htmlFor="Order-Name">
+                          Phone Number
+                        </div>
+                        <div>
+                          <input
+                            className="urpn1"
+                            type="text"
+                            name="name"
+                            maxLength="10"
+                            onChange={(e) => this.handleName(e)}
+                          />
+                        </div>
+
                       </div>
 
                       <div>{this.state.message}</div>
@@ -247,7 +261,7 @@ class Menu extends React.Component {
                             person._id,
                             this.state.priority,
                             this.state.quantity,
-                            this.state.email
+                            this.state.name
                           )
                         }
                       >

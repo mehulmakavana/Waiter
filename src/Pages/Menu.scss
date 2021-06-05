@@ -16,7 +16,6 @@ img {
   justify-content: space-between;
 }
 
-
 .wrapper-nav {
   display: grid;
   grid-template-columns: 1fr;
@@ -47,7 +46,6 @@ img {
 .flex1 {
   flex: 1;
   margin: 5px;
-
 }
 
 .flex2 {
@@ -259,15 +257,24 @@ img {
   width: 100%;
 }
 
-.urel{
-    margin-top: 30px;
+.urel {
+  margin-top: 30px;
 }
 
-.urel1{
-margin-top: 10px;
-width: 80%;
-height: 30px;
-font-size: 15px;
+.urel1 {
+  margin-top: 10px;
+  width: 80%;
+  height: 30px;
+  font-size: 15px;
+}
 
+.urpn {
+  margin-top: -10px;
+}
 
+.urpn1 {
+  margin-top: 10px;
+  width: 80%;
+  height: 30px;
+  font-size: 15px;
 }

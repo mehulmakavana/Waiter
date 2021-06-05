@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import { Link } from 'react-router-dom';
 import img from './carts.jpg';
 import './Cart.scss';
@@ -48,7 +49,6 @@ class DeletePopup extends React.Component {
         );
     }
 }
-
 
 
 class Popup extends React.Component {
@@ -247,24 +247,6 @@ class Cart extends Component {
         }
     }
 
-    // async parcelOrder() {
-    //     try {
-    //         const response = await fetch("http://localhost:8020/order/parcel/makeorder", {
-    //             method: "PUT",
-    //             headers: {
-    //                 "Content-type": "application/json; charset=UTF-8",
-    //                 Authorization: `Bearer ` + localStorage.getItem("token")
-    //             },
-    //         })
-    //         let data = await response.json()
-    //         alert("Your Parcel Order is Submit !")
-    //         console.log(data)
-    //         window.location.reload(false)
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-
-    // }
 
     render() {
 
@@ -280,7 +262,7 @@ class Cart extends Component {
                     </div>
                     <div className="emptycart_btn">
                         <div className="buttons">
-                            <Link to='/menu'>
+                            <Link to='/Menu'>
                                 <button className="cart-menu">Menu</button>
                             </Link>
                         </div>
@@ -327,14 +309,7 @@ class Cart extends Component {
                                 <button className="cart-button">Book Table</button>
                             </Link>
 
-                            {/* <button className="cart-button" onClick={this.togglePopup.bind(this)}>Make Note</button>
-                        {this.state.showPopup ?
-                            <Popup
-                                text='Close Me'
-                                closePopup={this.togglePopup.bind(this)}
-                            />
-                            : null
-                        } */}
+                     
 
                             <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
                             {this.state.showDeletePopup ?
