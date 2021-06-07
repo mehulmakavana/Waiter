@@ -42,6 +42,13 @@ export const SidebarData = [
   },
 
   {
+    title: 'SendItem',
+    path: '/SendItem',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
+
+  {
     title: 'Create Complaints',
     path: '/CreateComplaints',
     icon: <IoIcons.IoIosPaper />,
