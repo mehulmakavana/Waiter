@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import img from './carts.jpg';
 import './Cart.scss';
-
+import './Pop-up.css';
 
 class DeletePopup extends React.Component {
     constructor(props) {
@@ -49,6 +49,7 @@ class DeletePopup extends React.Component {
         );
     }
 }
+
 
 
 class Popup extends React.Component {
@@ -247,6 +248,7 @@ class Cart extends Component {
         }
     }
 
+   
 
     render() {
 
@@ -262,7 +264,7 @@ class Cart extends Component {
                     </div>
                     <div className="emptycart_btn">
                         <div className="buttons">
-                            <Link to='/Menu'>
+                            <Link to='/menu'>
                                 <button className="cart-menu">Menu</button>
                             </Link>
                         </div>
@@ -309,7 +311,7 @@ class Cart extends Component {
                                 <button className="cart-button">Book Table</button>
                             </Link>
 
-                     
+                       
 
                             <button className="cart-button" onClick={this.toggleDeletePopup.bind(this)}>Delete Cart</button>
                             {this.state.showDeletePopup ?
