@@ -47,6 +47,7 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
+
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
 
@@ -58,7 +59,11 @@ const Sidebar = () => {
         <Nav>
           <NavIcon to='#'>
             <FaIcons.FaBars onClick={showSidebar} />
+           
           </NavIcon>
+          <a href= "/">
+            <button>LogOut</button>
+            </a>
         </Nav>
        
 

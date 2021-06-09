@@ -9,6 +9,8 @@ import MakeOrder from './Pages/MakeOrder';
 import BookTable from './Pages/BookTable';
 import CreateComplaints from './Pages/CreateComplaints';
 import SendItem from './Pages/SendItem';
+import Login from './Pages/Login';
+
 
 
 function App() {
@@ -17,7 +19,8 @@ function App() {
       <Navbar />
 
       <Switch>
-        <Route path="/" exact component={ListTable} />
+      <Route path exact="/" component={Login} />
+        <Route path="/ListTable" exact component={ListTable} />
         <Route path="/Menu" component={Menu} />
         <Route path="/Cart" component={Cart} />
         <Route path="/MakeOrder" component={MakeOrder} />
@@ -25,6 +28,7 @@ function App() {
         <Route path="/BookTable" component={BookTable} />
         <Route path="/CreateComplaints" component={CreateComplaints} />
         <Route path="/SendItem" component={SendItem} />
+        
  
       </Switch>
     </Router>

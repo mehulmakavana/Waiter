@@ -8,7 +8,7 @@ export const SidebarData = [
 
   {
     title: 'List Of Table',
-    path: '/',
+    path: '/ListTable',
     icon: <RiTableFill.RiTableFill/>,
     cName: 'nav-text'
   },
