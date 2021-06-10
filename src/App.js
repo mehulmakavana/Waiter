@@ -10,6 +10,7 @@ import BookTable from './Pages/BookTable';
 import CreateComplaints from './Pages/CreateComplaints';
 import SendItem from './Pages/SendItem';
 import Login from './Pages/Login';
+import send from './Pages/send';
 
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/BookTable" component={BookTable} />
         <Route path="/CreateComplaints" component={CreateComplaints} />
         <Route path="/SendItem" component={SendItem} />
+        <Route path="/send" component={send} />
         
  
       </Switch>
