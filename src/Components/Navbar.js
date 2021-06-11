@@ -64,6 +64,9 @@ const Sidebar = () => {
           <a href= "/">
             <button>LogOut</button>
             </a>
+            <a href= "/Menu">
+            <button>Menu</button>
+            </a>
         </Nav>
        
 
