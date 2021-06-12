@@ -171,11 +171,8 @@ class PopupTable extends React.Component {
       data: formdata,
     })
       .then((res) => res.data)
-//       .then((data) => {
-//         const { result } = data;
-//         this.setState({ result });
-       //});
   }
+
 
   render() {
     return (
@@ -299,7 +296,7 @@ class Cart extends Component {
   }
 
   render() {
-    if (this.state.loading) {
+   
       return (
         <div className="empty-cart">
           <div className="transparent-cart">
@@ -327,6 +324,7 @@ class Cart extends Component {
         </div>
       );
     }
+  }
 
     return (
       <div>
@@ -336,29 +334,20 @@ class Cart extends Component {
           </div>
 
           <div className="cartView">
-            {this.state.cartItem.map((item) => (
-              <div key={item._id}>
-                <div className="cartItems1">
-                  <div classname="cart-images">
-                    <img
-                      height="100px"
-                      width="100px"
-                      src={item.product_id.imageUrl}
-                      alt=""
-                    />
-                    <div className="fontS">Name:{item.product_id.name}</div>
+          {order.items.map((item) => (
+                  <div key={item._id}>
+                    <table className="ccmt1">
+                      <tr>
+                        <td>{item._id}</td>
+                        <td>
+                          <button onClick={(e) => this.handleSend(e)}>
+                            Send
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
                   </div>
-                  <div className="fontS">Priority:{item.priority}</div>
-                  <div className="fontS">
-                    Price:{item.productPrice} 🗙 Quantity:{item.qty}
-                  </div>
-                  <div className="fontS-total">SubTotal:{item.total}</div>
-                </div>
-                <div className="Line">
-                  ______________________________________________________________
-                </div>
-              </div>
-            ))}
+                ))}
 
             <div className="Grand-Total">
               Grand Total = {this.state.subTotal} ₹
@@ -396,7 +385,7 @@ class Cart extends Component {
               className="cart-button"
               onClick={this.toggleDeletePopup.bind(this)}
             >
-              Delete Cart
+              send
             </button>
 
             {this.state.showDeletePopup ? (
@@ -410,6 +399,4 @@ class Cart extends Component {
       </div>
     );
   }
-}
-
 export default Cart;
