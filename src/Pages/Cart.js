@@ -323,8 +323,8 @@ class Cart extends Component {
           </div>
         </div>
       );
-    }
-  }
+    
+  
 
     return (
       <div>
@@ -398,5 +398,7 @@ class Cart extends Component {
         </div>
       </div>
     );
-  }
+            }
+          }
+  
 export default Cart;
