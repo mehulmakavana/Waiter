@@ -60,6 +60,65 @@ export default class MakeOrder extends Component {
     return (
       <div>
         <h1>Make Order</h1>
+        <div className="top">
+        <div className="top1">
+          <div className="topb">
+            <button className="topb1" onClick={this.props.closePopup}>
+              X
+            </button>
+          </div>
+          <Scrollbars style={{ width: 1535, height: 625 }}>
+            <label className="tod">Order Details</label>
+
+            {this.state.list.map((order) => (
+              <div key={order._id}>
+                <div className="ton">
+                  <div> Name :- {order.name}</div>
+                  <div> Time :- {order.createdAt}</div>
+                </div>
+                <table className="tot">
+                  <td>Product</td>
+                  <td>Qty</td>
+                  <td>Priority</td>
+                  <td>
+                    <div className="pp">Price(RS)</div>
+                  </td>
+                  <td>
+                    <div className="pp">Total(RS)</div>
+                  </td>
+                </table>
+
+                {order.items.map((item) => (
+                  <div key={item._id}>
+                    <table className="tot1">
+                      <tr>
+                        <td>
+                          <div>{item.product_id.name}</div>
+                        </td>
+
+                        <td>
+                          <div>{item.qty}</div>
+                        </td>
+                        <td>
+                          <div>{item.priority}</div>
+                        </td>
+
+                        <td>
+                          <div className="pp">{item.productPrice}</div>
+                        </td>
+
+                        <td>
+                          <div className="pp">{item.total}</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </Scrollbars>
+        </div>
+      </div>
 
         <div className="mk">
           <div className="mk1">
@@ -339,189 +398,7 @@ class DeletePopup extends React.Component {
 }
 }
 
-
-class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      cartItem: [],
-      quantity: 0,
-      subTotal: null,
-      showPopup: false,
-      showParcelPopup: false,
-      showDeletePopup: false,
-      showTablePopup: false,
-    };
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup,
-    });
-  }
-
-  toggleTablePopup() {
-    this.setState({
-      showTablePopup: !this.state.showTablePopup,
-    });
-  }
-
-  toggleParcelPopup() {
-    this.setState({
-      showParcelPopup: !this.state.showParcelPopup,
-    });
-  }
-
-  toggleDeletePopup() {
-    this.setState({
-      showDeletePopup: !this.state.showDeletePopup,
-    });
-  }
-
-  async componentDidMount() {
-    try {
-      const url = "http://localhost:8020/cart/getcart";
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ` + localStorage.getItem("token"),
-        },
-      });
-      const data = await response.json();
-      this.setState({
-        cartItem: data.Your_Cart.items,
-        subTotal: data.Your_Cart.subTotal,
-        loading: false,
-      });
-      this.searchArray = data;
-    } catch (err) {}
-  }
-
-  async placeOrder() {
-    try {
-      const response = await fetch("http://localhost:8020/order/makeorder", {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-          Authorization: `Bearer ` + localStorage.getItem("token"),
-        },
-      });
-      let data = await response.json();
-      alert("Your Order is Submit !");
-      console.log(data);
-      window.location.reload(false);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  render() {
-   
-      return (
-        <div className="empty-cart">
-          <div className="transparent-cart">
-            <div className="logo">
-              <img height="200px" width="200px" src={img} alt="" />
-            </div>
-            <div className="text-area">
-              <div className="state">Opps ! Your cart is Empty</div>
-              <div className="state">Please Visit Our Menu First.</div>
-            </div>
-            <div className="emptycart_btn">
-              <div className="buttons">
-                <Link to="/menu">
-                  <button className="cart-menu">Menu</button>
-                </Link>
-              </div>
-
-              <div className="buttons">
-                <Link to="/orders">
-                  <button className="cart-order">View Order</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    
-  
-
-    return (
-      <div>
-        <div className="cartbox1">
-          <div className="ListS">
-            <h1 className="titleS">Cart</h1>
-          </div>
-
-          <div className="cartView">
-          {order.items.map((item) => (
-                  <div key={item._id}>
-                    <table className="ccmt1">
-                      <tr>
-                        <td>{item._id}</td>
-                        <td>
-                          <button onClick={(e) => this.handleSend(e)}>
-                            Send
-                          </button>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                ))}
-
-            <div className="Grand-Total">
-              Grand Total = {this.state.subTotal} ₹
-            </div>
-
-            <button
-              className="cart-button"
-              onClick={this.toggleTablePopup.bind(this)}
-            >
-              Book Table
-            </button>
-
-            {this.state.showTablePopup ? (
-              <PopupTable
-                text="Close Me"
-                closeTablePopup={this.toggleTablePopup.bind(this)}
-              />
-            ) : null}
-
-            <button
-              className="cart-button"
-              onClick={this.toggleParcelPopup.bind(this)}
-            >
-              Parcel Order
-            </button>
-
-            {this.state.showParcelPopup ? (
-              <PopupParcel
-                text="Close Me"
-                closeParcelPopup={this.toggleParcelPopup.bind(this)}
-              />
-            ) : null}
-
-            <button
-              className="cart-button"
-              onClick={this.toggleDeletePopup.bind(this)}
-            >
-              send
-            </button>
-
-            {this.state.showDeletePopup ? (
-              <DeletePopup
-                text="Close Me"
-                closePopup={this.toggleDeletePopup.bind(this)}
-              />
-            ) : null}
-          </div>
-        </div>
-      </div>
-    );
-            }
-          }
- 
-
+       
 
 class PopupTable extends React.Component {
   constructor(props) {
@@ -530,8 +407,23 @@ class PopupTable extends React.Component {
       name: "",
       table: "",
      
-      loading: true,
-    };
+  }
+  }
+
+  async menuitem() {
+    const url = "http://localhost:8020/menu/menues";
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ cart: data.products });
+    this.searchArray = data;
+  }
+
+  async handleClick(_id) {
+    const url = "http://localhost:8020/menu/menu/" + _id;
+    const response = await fetch(url);
+    const data = await response.json();
+    this.setState({ carts: data.products, loading: false });
+    this.searchArray = data;
   }
 
   handleName(e) {
@@ -565,6 +457,40 @@ class PopupTable extends React.Component {
       .then((res) => res.data)
 
   }
+  handleSend(e) {
+    axios({
+      url: `http://localhost:8020/order/tokitchen/${this._id}/${this.props._id}`,
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.data)
+      .then((data) => {
+        const { message } = data;
+        this.setState({ message });
+      });
+  }
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+};
+
+handleBook() {
+    alert("Your Detail is Saved!")
+}
+
+handleSubmit(date) {
+    this.setState({
+        startDate: date
+    })
+}
+
+onFormSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.startDate)
+}
+
 
   render() {
     return (
@@ -605,6 +531,130 @@ class PopupTable extends React.Component {
                 </button>
               </div>
             </div>
+            {this.state.people
+            .filter((order) => order.OrderIs === "Pending")
+            .map((order) => (
+              <div key={order._id}>
+                <table className="ccmt1">
+                  <tr>
+                    <td>{order._id}</td>
+                    <td>{order.name}</td>
+                  </tr>
+                </table>
+
+                {order.items.map((item) => (
+                  <div key={item._id}>
+                    <table className="ccmt1">
+                      <tr>
+                        <td>{item._id}</td>
+                        <td>
+                          <button onClick={(e) => this.handleSend(e)}>
+                            Send
+                          </button>
+                        </td>
+                      </tr>
+                    </table>
+                    {this.state.cart
+                  .filter(
+                    (person) =>
+                      person.categoryId._id === "609a0d4423025806dc494528"
+                  )
+                  .map((person) => (
+                    <div key={person._id}>
+                      <div className="cardItem-menus">
+                        <div classname="image">
+                          <img
+                            width="230px"
+                            height="230px"
+                            src={person.imageUrl}
+                            alt=""
+                          />
+                        </div>
+                        <div className="content-data">
+                          <div className="menu-data">{person.name}</div>
+                          <div className="menu-description">
+                            Description :- {person.description}
+                          </div>
+                          <div className="price">
+                            <div className="menu-price">
+                              price :- {person.originalPrice} ₹{" "}
+                            </div>
+                          </div>
+                          <div>
+                            <div className="priority-set">
+                              <button
+                                type="button"
+                                className="priority-btn"
+                                onClick={this.incrementCount}
+                              >
+                                +
+                              </button>
+                              <div classNam="p-data">
+                                Priority : {this.state.priority}
+                              </div>
+                              <button
+                                type="button"
+                                className="priority-btn"
+                                onClick={this.DecrementCount}
+                              >
+                                -
+                              </button>
+                            </div>
+
+                            <div className="Quantity-set">
+                              <button
+                                type="button"
+                                className="Quantity-btn"
+                                onClick={this.incrementQTY}
+                              >
+                                +
+                              </button>
+                              <div className="q-data">
+                                Quantity : {this.state.quantity}
+                              </div>
+                              <button
+                                type="button"
+                                className="Quantity-btn"
+                                onClick={this.DecrementQTY}
+                              >
+                                -
+                              </button>
+                            </div>
+
+                            <div className="Order-Note" htmlFor="Order-Name">
+                              Add Notes
+                            </div>
+                            <div>
+                              <input
+                                className="input-notes"
+                                type="text"
+                                name="name"
+                                placeholder="Enter Order Note"
+                                onChange={(e) => this.handleName(e)}
+                              />
+                            </div>
+                          </div>
+                          <button
+                            className="addCart"
+                            onClick={() =>
+                              this.addCart(
+                                person._id,
+                                this.state.priority,
+                                this.state.quantity,
+                                this.state.name
+                              )
+                            }
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
