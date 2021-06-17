@@ -56,22 +56,7 @@ componentDidMount() {
       });
     }
 
-    getAbandonedCart() {
 
-      let start_date = moment().subtract(6,'d').format('YYYY-MM-DD')
-      let end_date = moment().format('YYYY-MM-DD')
-      let measurement = 'value'
-      let where1 = JSON.stringify([["Campaign Name","=", this.campaignID]])
-      let where2 = JSON.stringify([["$attributed_message","=", 'Abandonded Cart: Email 1']])
-
-      axios.get('/api/v1/metric/' + this.metrics[3].id + '/export?start_date=' + start_date + '&end_date=' + end_date + '&measurement=' + measurement + '&where=' + where1 + '&where=' + where2).then(({data}) => {
-
-          for (let i = 0; i < data.results[0].data.length; i++) {
-             this.series[4]['data'].push(data.results[0].data[i].values[0])
-          }
-
-      });
-  },
 
     async addTimes(ctx) {
       return new Promise((resolve, reject) => {

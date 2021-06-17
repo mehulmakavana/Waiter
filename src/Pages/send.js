@@ -16,29 +16,54 @@ export default class MakeOrder extends Component {
     };
   }
 
-  handlEmail(e) {
-    let email = e.target.value;
-    this.setState({ email: email });
-  }
-
-  handleName(e) {
-    let name = e.target.value;
-    this.setState({ name: name });
-  }
+  
 
   handleTable(e) {
     let table = e.target.value;
     this.setState({ table: table });
   }
-  async componentDidMount() {
-    const url = "http://localhost:8020/order/getorders";
-    const response = await fetch(url);
-    const data = await response.json();
-    this.setState({ people: data.orders, loading: false, _id : data.orders._id});
-    this.searchArray = data;
-    
-  }
 
+  }
+  const mockJournalEntry: journalEntry = {
+    id: '1',
+    title: 'Updated Entry',
+    content: 'This is an updated entry.'
+  };
+  const mockJournalEntryId = '1';
+  const mockUserId = 'abc';
+  
+  const App = () => {
+    const [mutate] = useMutation(updateJournalEntryForUser);
+  
+    const handleJournalEntryUpdate = async () => {
+      try {
+        const data = await mutate(mockJournalEntry, mockJournalEntryId, mockUserId);
+        console.log(data);
+      } catch {
+      }
+    };
+  
+    return <button onClick={handleJournalEntryUpdate}>Click me!</button>;
+  };
+
+  const mockJournalEntry: journalEntry = {
+    id: '1',
+    title: 'Updated Entry',
+    content: 'This is an updated entry.'
+  };
+
+  
+  const App = () => {
+
+    const [mutate] = useMutation(updateJournalEntryForUser);
+  
+    const handleJournalEntryUpdate = async () => {
+ 
+
+    };
+  
+    return <button onClick={handleJournalEntryUpdate}>Click me!</button>;
+  };
   
   handleSend(e) {
     axios({
@@ -480,6 +505,23 @@ componentDidMount() {
       body: JSON.stringify(postBody)
   };
 
+  axios.all([requestOne, requestTwo, requestThree]).then(axios.spread((...responses) => {
+    const responseOne = responses[0]
+    const responseTwo = responses[1]
+    const responesThree = responses[2]
+    // use/access the results 
+  })).catch(errors => {
+    // react on errors.
+  })
+
+  @PostMapping("/cart")
+public Cart create(String productName, @RequestBody Map<String, String> body){
+    String productid = body.get("productid");
+    String productname=("productname");
+
+    return cartRepository.save(new Cart(productid,productname));
+}
+
   fetch(recipeUrl, requestMetadata)
       .then(res => res.json())
       .then(recipes => {
@@ -529,6 +571,70 @@ componentDidMount() {
   
   }
 
+  handleSubmit = e => {
+    
+    this.setState({ buttonload : true });
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        fetch("api/Authentication/Login", {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            data:{
+              CompanyCode : this.props.selectedCompany,
+           
+              Password : values.password
+            }
+          })
+         })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log(result)
+          },
+     
+          (error) => {
+            this.setState({ buttonload : false });
+            console.log(error)
+          })
+      }
+    });
+
+    render() {
+      let list = this.props.data.map(function (comp, i) {
+       return (
+        <tr key={i+1}>
+          <thathname:`/competitions/${comp.id}`,query:{league:comp.league}}}> {comp.caption} </Link></td>
+          <td>{comp.league}</td>
+          <td>{comp.numberOfTeams}</td>
+        </tr>
+       );
+      }, this);
+    
+     return (
+      <tbody>{list}</tbody>
+
+      
+ dataSource(props) {
+  var url = 'http://api.football-data.org/v1/competitions/x/teams';
+  this.setState({source: url.replace(url.split('/')[5],  this.props.params.id)});
+ }
+
+ getTeamsData(){
+
+   cache:false,
+   success: function(data){
+    this.setState({teamData: data.teams});
+   }.bind(this),
+   error: function(xhr, status, err){
+    console.log(err);
+   }
+  })}
+     );
+    }};
+  };
+
   handleSend(e) {
     axios({
       url: `http://localhost:8020/order/tokitchen/${this._id}/${this.props._id}`,
@@ -547,7 +653,6 @@ componentDidMount() {
   handleChange = event => {
     this.setState({ value: event.target.value });
 };
-
 
 
   render() {
@@ -589,51 +694,13 @@ componentDidMount() {
                 </button>
               </div>
             </div>
-            {this.state.people
-            .filter((order) => order.OrderIs === "Pending")
-            .map((order) => (
-              <div key={order._id}>
-                <table className="ccmt1">
-                  <tr>
-                    <td>{order._id}</td>
-                    <td>{order.name}</td>
-                  </tr>
-                </table>
+            </div>
+            </div>
 
-                {order.items.map((item) => (
-                  <div key={item._id}>
-                    <table className="ccmt1">
-                      <tr>
-                        <td>{item._id}</td>
-                        <td>
-                          <button onClick={(e) => this.handleSend(e)}>
-                            Send
-                          </button>
-                        </td>
-                      </tr>
-                    </table>
-                    {this.state.cart
-                  .filter(
-                    (person) =>
-                      person.categoryId._id === "609a0d4423025806dc494528"
-                  )
-                  .map((person) => (
-                    <div key={person._id}>
-                      <div className="cardItem-menus">
-                        <div classname="image">
-                        
-                      </div>
-                    </div>
-                  ))}
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-     
+
+           
     );
   }
-}
 
 
  
