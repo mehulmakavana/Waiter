@@ -72,11 +72,11 @@ class Popup extends React.Component {
                         </td>
 
                         <td>
-                          <div className="pp">{item.productPrice}</div>
+                          <div className="pp">{item.productPrice.toFixed()}</div>
                         </td>
 
                         <td>
-                          <div className="pp">{item.total}</div>
+                          <div className="pp">{item.total.toFixed()}</div>
                         </td>
                       </tr>
                     </table>

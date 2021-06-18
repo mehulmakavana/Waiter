@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import img from "./carts.jpg";
+
 import "./Cart.scss";
 import "./Pop-up.css";
-import axios from "axios";
 
 class DeletePopup extends React.Component {
   constructor(props) {
@@ -31,21 +30,94 @@ class DeletePopup extends React.Component {
     return (
       <div className="Deletepopup">
         <div className="Deletepopup_inner">
-          <h1>{this.props.text}</h1>
-          <div className="close-set">
-            <button className="close-btn" onClick={this.props.closePopup}>
+          <div className="cdpb">
+            <button className="cdpb1" onClick={this.props.closePopup}>
               X
             </button>
           </div>
 
           <div>
-            <div className="form-group">
-              <div>Are You Sure to Delete Cart !</div>
-              <div className="order-btn">
-                <button className="cart-button" onClick={this.handleDelete}>
-                  Confirm
-                </button>
+            <div className="sdc">Are You Sure to Delete Cart !</div>
+            <div className="order-btn">
+              <button className="cart-button" onClick={this.handleDelete}>
+                Confirm
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class TablePopup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      table: null,
+    };
+  }
+
+  async handleOnTable(table) {
+    try {
+      const response = await fetch("http://localhost:8020/book/checkin", {
+        method: "POST",
+        body: JSON.stringify({
+          table: table,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      alert("Your Table is Booked !");
+      console.log(data);
+      window.location.reload(false);
+    } catch (err) {
+      alert(err);
+      window.location.reload(false);
+    }
+  }
+
+  handleNumber(e) {
+    let table = e.target.value;
+    this.setState({ table: table });
+  }
+
+  render() {
+    return (
+      <div className="pop-up">
+        <div className="pop-up_inner">
+   
+          <div className="cdpb">
+            <button className="cdpb1" onClick={this.props.closeTablePopup}>
+              X
+            </button>
+          </div>
+
+          <div>
+          
+              <label className="ctpn">Table Number</label>
+              <div className="ctpn1">
+                <input
+                  className="ctpn2"
+                  type="number"
+                  table="table"
+                  min="1"
+                  placeholder="Enter Table Number"
+                  onChange={(e) => this.handleNumber(e)}
+                />
               </div>
+              <div className="order-btn">
+                <button
+                  className="cart-button"
+                  onClick={() => this.handleOnTable(this.state.table)}
+                >
+                  Submit
+                </button>
+              
             </div>
           </div>
         </div>
@@ -94,21 +166,21 @@ class PopupParcel extends React.Component {
 
   render() {
     return (
-      <div className="popup">
-        <div className="popup_inner">
-          <h1>{this.props.text}</h1>
-          <div className="close-set">
-            <button className="close-btn" onClick={this.props.closeParcelPopup}>
+      <div className="pop-up">
+        <div className="pop-up_inner">
+         
+          <div className="cdpb">
+            <button className="cdpb1" onClick={this.props.closeParcelPopup}>
               X
             </button>
           </div>
 
           <div>
-            <div className="form-group">
-              <label htmlFor="Order-Name">Order Name</label>
-              <div>
+          
+              <label className="ctpn">Order Name</label>
+              <div className="ctpn1">
                 <input
-                  className="input"
+                  className="ctpn2"
                   type="text"
                   name="name"
                   placeholder="Enter Order Note"
@@ -120,98 +192,9 @@ class PopupParcel extends React.Component {
                   className="cart-button"
                   onClick={() => this.handleParcel(this.state.name)}
                 >
-                  Place Order
+                  Parcel Order
                 </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-class PopupTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      table: "",
-     
-      loading: true,
-    };
-  }
-
-  handleName(e) {
-    let name = e.target.value;
-    this.setState({ name: name });
-  }
-
-  handleTable(e) {
-    let table = e.target.value;
-    this.setState({ table: table });
-  }
-
-  handleUpload(e) {
-    let name = this.state.name;
-    let table = this.state.table;
-    let formdata = new FormData();
-
-    formdata.append("name", name);
-    formdata.append("table", table);
-
-    axios({
-      url: `http://localhost:8020/order/waiter/makeorder`,
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-        Authorization: `Bearer ` + localStorage.getItem("token"),
-      },
-
-      data: formdata,
-    })
-      .then((res) => res.data)
-  }
-
-
-  render() {
-    return (
-      <div className="popup">
-        <div className="popup_inner">
-          <h1>{this.props.text}</h1>
-          <div className="close-set">
-            <button className="close-btn" onClick={this.props.closeTablePopup}>
-              X
-            </button>
-          </div>
-
-          <div>
-            <div className="form-group">
-              <div className="sd">Name</div>
-              <div className="sd1">
-                <input
-                  type="text"
-                  className="sd2"
-                  name="name"
-                  onChange={(e) => this.handleName(e)}
-                />
-              </div>
-
-              <div className="ed">Table Number</div>
-              <div className="ed1">
-                <input
-                  type="text"
-                  className="ed2"
-                  name="table"
-                  onChange={(e) => this.handleTable(e)}
-                />
-              </div>
-
-              <div className="rb">
-                <button className="rb1" onClick={(e) => this.handleUpload(e)}>
-                  Upload
-                </button>
-              </div>
+          
             </div>
           </div>
         </div>
@@ -229,9 +212,9 @@ class Cart extends Component {
       quantity: 0,
       subTotal: null,
       showPopup: false,
+      showTablePopup: false,
       showParcelPopup: false,
       showDeletePopup: false,
-      showTablePopup: false,
     };
   }
 
@@ -296,35 +279,25 @@ class Cart extends Component {
   }
 
   render() {
-   
+    if (this.state.loading) {
       return (
         <div className="empty-cart">
           <div className="transparent-cart">
-            <div className="logo">
-              <img height="200px" width="200px" src={img} alt="" />
-            </div>
             <div className="text-area">
-              <div className="state">Opps ! Your cart is Empty</div>
+              <div className="state">Opps ! Your Cart is Empty</div>
               <div className="state">Please Visit Our Menu First.</div>
             </div>
             <div className="emptycart_btn">
               <div className="buttons">
-                <Link to="/menu">
+                <Link to="/Menu">
                   <button className="cart-menu">Menu</button>
-                </Link>
-              </div>
-
-              <div className="buttons">
-                <Link to="/orders">
-                  <button className="cart-order">View Order</button>
                 </Link>
               </div>
             </div>
           </div>
         </div>
       );
-    
-  
+    }
 
     return (
       <div>
@@ -334,71 +307,78 @@ class Cart extends Component {
           </div>
 
           <div className="cartView">
-          {order.items.map((item) => (
-                  <div key={item._id}>
-                    <table className="ccmt1">
-                      <tr>
-                        <td>{item._id}</td>
-                        <td>
-                          <button onClick={(e) => this.handleSend(e)}>
-                            Send
-                          </button>
-                        </td>
-                      </tr>
-                    </table>
-                  </div>
-                ))}
+            <table className="cit">
+              <tr>
+                <td>Name</td>
+                <td>Priority</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Total</td>
+              </tr>
+            </table>
 
+            {this.state.cartItem.map((item) => (
+              <div key={item._id}>
+                <table className="cit1">
+                  <tr>
+                    <td>{item.product_id.name}</td>
+                    <td>{item.priority}</td>
+                    <td>{item.qty}</td>
+                    <td>{item.productPrice.toFixed()}</td>
+                    <td>{item.total.toFixed()}</td>
+                  </tr>
+                </table>
+              </div>
+            ))}
             <div className="Grand-Total">
-              Grand Total = {this.state.subTotal} ₹
+              Grand Total = {this.state.subTotal.toFixed()} ₹
             </div>
 
-            <button
-              className="cart-button"
-              onClick={this.toggleTablePopup.bind(this)}
-            >
-              Book Table
-            </button>
+            <div className="Buttons">
+              <button
+                className="cart-button"
+                onClick={this.toggleTablePopup.bind(this)}
+              >
+                Book Table
+              </button>
+              {this.state.showTablePopup ? (
+                <TablePopup
+                  text="Close Me"
+                  closeTablePopup={this.toggleTablePopup.bind(this)}
+                />
+              ) : null}
 
-            {this.state.showTablePopup ? (
-              <PopupTable
-                text="Close Me"
-                closeTablePopup={this.toggleTablePopup.bind(this)}
-              />
-            ) : null}
+              <button
+                className="cart-button"
+                onClick={this.toggleDeletePopup.bind(this)}
+              >
+                Delete Cart
+              </button>
+              {this.state.showDeletePopup ? (
+                <DeletePopup
+                  text="Close Me"
+                  closePopup={this.toggleDeletePopup.bind(this)}
+                />
+              ) : null}
 
-            <button
-              className="cart-button"
-              onClick={this.toggleParcelPopup.bind(this)}
-            >
-              Parcel Order
-            </button>
-
-            {this.state.showParcelPopup ? (
-              <PopupParcel
-                text="Close Me"
-                closeParcelPopup={this.toggleParcelPopup.bind(this)}
-              />
-            ) : null}
-
-            <button
-              className="cart-button"
-              onClick={this.toggleDeletePopup.bind(this)}
-            >
-              send
-            </button>
-
-            {this.state.showDeletePopup ? (
-              <DeletePopup
-                text="Close Me"
-                closePopup={this.toggleDeletePopup.bind(this)}
-              />
-            ) : null}
+              <button
+                className="cart-button"
+                onClick={this.toggleParcelPopup.bind(this)}
+              >
+                Parcel Order
+              </button>
+              {this.state.showParcelPopup ? (
+                <PopupParcel
+                  text="Close Me"
+                  closeParcelPopup={this.toggleParcelPopup.bind(this)}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
     );
-            }
-          }
-  
+  }
+}
+
 export default Cart;

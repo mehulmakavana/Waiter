@@ -1,17 +1,13 @@
-  
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
-import { SidebarData } from './SidebarData';
-import NavMenu from './NavMenu';
-import { IconContext } from 'react-icons/lib';
-import { Scrollbars } from 'react-custom-scrollbars';
-
-
-
-
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import { SidebarData } from "./SidebarData";
+import NavMenu from "./NavMenu";
+import { IconContext } from "react-icons/lib";
+import { Scrollbars } from "react-custom-scrollbars";
+import './Navbar.scss';
 
 const Nav = styled.div`
   background: #15171c;
@@ -38,7 +34,7 @@ const SidebarNav = styled.nav`
   justify-content: center;
   position: fixed;
   top: 0;
-  left: ${({ sidebar }) => (sidebar ? '0' : '-100%')};
+  left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
 `;
@@ -47,47 +43,45 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
-
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
-
   const showSidebar = () => setSidebar(!sidebar);
+
+
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#fff' }}>
+      <IconContext.Provider value={{ color: "#fff" }}>
         <Nav>
-          <NavIcon to='#'>
+          <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
-           
           </NavIcon>
-          <a href= "/">
-            <button>LogOut</button>
-            </a>
-            <a href= "/Menu">
+
+          <div className="menu">
+          <a href="/Menu">
+          
             <button>Menu</button>
-            </a>
+           
+          </a>
+          </div>
+          
         </Nav>
-       
 
         <SidebarNav sidebar={sidebar}>
-        <Scrollbars style={{ width: "100%", height: "100%" }}>
-          <SidebarWrap>
-            <NavIcon to='#'>
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </NavIcon>
-            {SidebarData.map((item, index) => {
-              return <NavMenu item={item} key={index} />;
-            })}
-          </SidebarWrap>
+          <Scrollbars style={{ width: "100%", height: "100%" }}>
+            <SidebarWrap>
+              <NavIcon to="#">
+                <AiIcons.AiOutlineClose onClick={showSidebar} />
+              </NavIcon>
+              {SidebarData.map((item, index) => {
+                return <NavMenu item={item} key={index} />;
+              })}
+            </SidebarWrap>
           </Scrollbars>
         </SidebarNav>
-       
       </IconContext.Provider>
-      
     </>
   );
 };
 
 export default Sidebar;
-

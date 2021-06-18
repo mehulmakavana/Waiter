@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import PropTypes from 'prop-types';
-import loginImg from './Image/login.svg'
+import loginImg from '../Image/login.svg'
 import {useHistory} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './Login.scss';

@@ -74,7 +74,7 @@ class Menu extends React.Component {
       let data = await response.json();
       alert("Your Order in Cart!");
       console.log(data);
-      window.location.reload(false);
+     
 
      
     } catch (err) {
