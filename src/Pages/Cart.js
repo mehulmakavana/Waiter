@@ -1,8 +1,80 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../Components/Navbar";
 
 import "./Cart.scss";
 import "./Pop-up.css";
+
+class Popup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      name: null,
+    };
+  }
+
+  async handleSubmit(name) {
+    try {
+      const response = await fetch("http://localhost:8020/order/makeorder", {
+        method: "PUT",
+        body: JSON.stringify({
+          name: name,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      alert("Your Order is Submit !");
+      console.log(data);
+      window.location.reload(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  handleName(e) {
+    let name = e.target.value;
+    this.setState({ name: name });
+  }
+
+  render() {
+    return (
+      <div className="pop-up">
+        <div className="pop-up_inner">
+          <div className="cdpb">
+            <button className="cdpb1" onClick={this.props.closePopup}>
+              X
+            </button>
+          </div>
+
+          <div>
+            <label className="ctpn">Order Name</label>
+            <div className="ctpn1">
+              <input
+                className="ctpn2"
+                type="text"
+                name="name"
+                placeholder="Enter Order Name"
+                onChange={(e) => this.handleName(e)}
+              />
+            </div>
+            <div className="order-btn">
+              <button
+                className="cart-button"
+                onClick={() => this.handleSubmit(this.state.name)}
+              >
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 class DeletePopup extends React.Component {
   constructor(props) {
@@ -90,7 +162,6 @@ class TablePopup extends React.Component {
     return (
       <div className="pop-up">
         <div className="pop-up_inner">
-   
           <div className="cdpb">
             <button className="cdpb1" onClick={this.props.closeTablePopup}>
               X
@@ -98,26 +169,24 @@ class TablePopup extends React.Component {
           </div>
 
           <div>
-          
-              <label className="ctpn">Table Number</label>
-              <div className="ctpn1">
-                <input
-                  className="ctpn2"
-                  type="number"
-                  table="table"
-                  min="1"
-                  placeholder="Enter Table Number"
-                  onChange={(e) => this.handleNumber(e)}
-                />
-              </div>
-              <div className="order-btn">
-                <button
-                  className="cart-button"
-                  onClick={() => this.handleOnTable(this.state.table)}
-                >
-                  Submit
-                </button>
-              
+            <label className="ctpn">Table Number</label>
+            <div className="ctpn1">
+              <input
+                className="ctpn2"
+                type="number"
+                table="table"
+                min="1"
+                placeholder="Enter Table Number"
+                onChange={(e) => this.handleNumber(e)}
+              />
+            </div>
+            <div className="order-btn">
+              <button
+                className="cart-button"
+                onClick={() => this.handleOnTable(this.state.table)}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
@@ -168,7 +237,6 @@ class PopupParcel extends React.Component {
     return (
       <div className="pop-up">
         <div className="pop-up_inner">
-         
           <div className="cdpb">
             <button className="cdpb1" onClick={this.props.closeParcelPopup}>
               X
@@ -176,25 +244,23 @@ class PopupParcel extends React.Component {
           </div>
 
           <div>
-          
-              <label className="ctpn">Order Name</label>
-              <div className="ctpn1">
-                <input
-                  className="ctpn2"
-                  type="text"
-                  name="name"
-                  placeholder="Enter Order Note"
-                  onChange={(e) => this.handleName(e)}
-                />
-              </div>
-              <div className="order-btn">
-                <button
-                  className="cart-button"
-                  onClick={() => this.handleParcel(this.state.name)}
-                >
-                  Parcel Order
-                </button>
-          
+            <label className="ctpn">Order Name</label>
+            <div className="ctpn1">
+              <input
+                className="ctpn2"
+                type="text"
+                name="name"
+                placeholder="Enter Order Note"
+                onChange={(e) => this.handleName(e)}
+              />
+            </div>
+            <div className="order-btn">
+              <button
+                className="cart-button"
+                onClick={() => this.handleParcel(this.state.name)}
+              >
+                Parcel Order
+              </button>
             </div>
           </div>
         </div>
@@ -220,10 +286,9 @@ class Cart extends Component {
 
   togglePopup() {
     this.setState({
-      showPopup: !this.state.showPopup,
+        showPopup: !this.state.showPopup
     });
-  }
-
+}
   toggleTablePopup() {
     this.setState({
       showTablePopup: !this.state.showTablePopup,
@@ -278,6 +343,25 @@ class Cart extends Component {
     }
   }
 
+  async handleSubmit() {
+    try {
+      const response = await fetch("http://localhost:8020/order/makeorder", {
+        method: "PUT",
+
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          Authorization: `Bearer ` + localStorage.getItem("token"),
+        },
+      });
+      let data = await response.json();
+      alert("Your Order is Submit !");
+      console.log(data);
+      window.location.reload(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   render() {
     if (this.state.loading) {
       return (
@@ -301,6 +385,7 @@ class Cart extends Component {
 
     return (
       <div>
+        <Navbar />
         <div className="cartbox1">
           <div className="ListS">
             <h1 className="titleS">Cart</h1>
@@ -335,6 +420,20 @@ class Cart extends Component {
             </div>
 
             <div className="Buttons">
+              <button
+                className="cart-button"
+                onClick={() => this.togglePopup.bind(this)}
+              >
+                Place Order
+              </button>
+              {this.state.showPopup ? (
+                <Popup
+                  text="Close Me"
+                  closePopup={this.togglePopup.bind(this)}
+                />
+              ) : null}
+          
+
               <button
                 className="cart-button"
                 onClick={this.toggleTablePopup.bind(this)}

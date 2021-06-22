@@ -1,5 +1,6 @@
 import React from "react";
 import "./Menu.scss";
+import Navbar from '../Components/Navbar';
 
 class Menu extends React.Component {
   constructor(props) {
@@ -115,6 +116,7 @@ class Menu extends React.Component {
     if (this.state.loading) {
       return (
         <div>
+          <Navbar/>
           <div className="Allpage">
             <div className="flex1">
               <div className="Lists">

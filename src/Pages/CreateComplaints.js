@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./CreateComplaints.scss";
 import axios from "axios";
+import Navbar from '../Components/Navbar';
 
 export class CreateComplaints extends Component {
   constructor(props) {
@@ -33,6 +34,8 @@ export class CreateComplaints extends Component {
   render() {
     return (
       <div>
+       <Navbar/>
+
         <h1> Create Complaints </h1>
         <div>
          

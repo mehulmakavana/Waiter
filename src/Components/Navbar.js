@@ -7,7 +7,11 @@ import { SidebarData } from "./SidebarData";
 import NavMenu from "./NavMenu";
 import { IconContext } from "react-icons/lib";
 import { Scrollbars } from "react-custom-scrollbars";
-import './Navbar.scss';
+import "./Navbar.scss";
+
+
+
+
 
 const Nav = styled.div`
   background: #15171c;
@@ -43,11 +47,10 @@ const SidebarWrap = styled.div`
   width: 100%;
 `;
 
+
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-
-
 
   return (
     <>
@@ -56,16 +59,12 @@ const Sidebar = () => {
           <NavIcon to="#">
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
-
-          <div className="menu">
-          <a href="/Menu">
           
-            <button>Menu</button>
-           
-          </a>
-          </div>
-          
+          <a className="menu" href="/Menu">Menu</a>
+          <a className="logout" href="/">Logout</a>
+                
         </Nav>
+      
 
         <SidebarNav sidebar={sidebar}>
           <Scrollbars style={{ width: "100%", height: "100%" }}>
@@ -82,6 +81,7 @@ const Sidebar = () => {
       </IconContext.Provider>
     </>
   );
+            
 };
 
 export default Sidebar;

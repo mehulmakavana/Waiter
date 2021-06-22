@@ -21,44 +21,29 @@ export const SidebarData = [
   },
 
   {
-    title: 'MakeOrder',
-    path: '/MakeOrder',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
-  },
-
-  {
-    title: 'BookTable',
-    path: '/BookTable',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
-  },
-
-  {
     title: 'Cart',
     path: '/Cart',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
 
-  {
-    title: 'SendItem',
-    path: '/SendItem',
-    icon: <AiIcons.AiFillHome />,
-    cName: 'nav-text'
-  },
+  // {
+  //   title: 'MakeOrder',
+  //   path: '/MakeOrder',
+  //   icon: <AiIcons.AiFillHome />,
+  //   cName: 'nav-text'
+  // },
+
+  // {
+  //   title: 'BookTable',
+  //   path: '/BookTable',
+  //   icon: <AiIcons.AiFillHome />,
+  //   cName: 'nav-text'
+  // },
 
   {
     title: 'Create Complaints',
     path: '/CreateComplaints',
-    icon: <IoIcons.IoIosPaper />,
-    cName: 'nav-text',
-  },
-    
-
-  {
-    title: 'User Complaints',
-    path: '/UserComplaints',
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text',
   },

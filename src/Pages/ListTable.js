@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./ListTable.scss";
 import { Scrollbars } from "react-custom-scrollbars";
+import Navbar from '../Components/Navbar';
+
 
 class Popup extends React.Component {
   constructor(props) {
@@ -119,6 +121,7 @@ export class ListTable extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <h1>Table List</h1>
 
         <div className="two">

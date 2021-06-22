@@ -106,29 +106,7 @@ class MakeOrder extends Component {
           </div>
         </div>
 
-        {/* <div className="rnv">
-          <div className="rnv1">
-            <div className="rnv2">
-              <table className="rnt">
-                <td>Name</td>
-                <td>Email Id</td>
-                <td>Table Number</td>
-              </table>
-
-              <div>
-                <table className="rnt1">
-                  <tr>
-                    <td>{this.state.name}</td>
-                    <td>
-                      <div>{this.state.email}</div>
-                    </td>
-                    <td>{this.state.table}</td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div> */}
+      
       </div>
     );
   }
