@@ -28,8 +28,8 @@ export const SidebarData = [
   },
 
   // {
-  //   title: 'MakeOrder',
-  //   path: '/MakeOrder',
+  //   title: 'Reservation',
+  //   path: '/Reservation',
   //   icon: <AiIcons.AiFillHome />,
   //   cName: 'nav-text'
   // },
@@ -47,6 +47,12 @@ export const SidebarData = [
     icon: <IoIcons.IoIosPaper />,
     cName: 'nav-text',
   },
-    
+
+  {
+    title: 'Super Admin',
+    path: '/SuperAdmin',
+    icon: <AiIcons.AiFillHome />,
+    cName: 'nav-text'
+  },
 
 ]

@@ -60,9 +60,13 @@ const Sidebar = () => {
             <FaIcons.FaBars onClick={showSidebar} />
           </NavIcon>
           
+         
           <a className="menu" href="/Menu">Menu</a>
+          <a className="cart" href="/Cart">Cart</a>
+        
           <a className="logout" href="/">Logout</a>
-                
+
+      
         </Nav>
       
 

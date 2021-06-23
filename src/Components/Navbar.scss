@@ -2,7 +2,7 @@
   
     text-decoration: none;
     color: white;
-    margin-left: 1250px;
+    margin-left: 1150px;
     font-size: x-large;
    
 }
@@ -11,11 +11,27 @@
     color: rgb(11, 229, 236);
 }
 
+
+
+.cart{
+  
+    text-decoration: none;
+    color: white;
+    margin-left: 50px;
+    font-size: x-large;
+   
+}
+
+.cart:hover {
+    color: rgb(11, 229, 236);
+}
+
+
 .logout{
   
     text-decoration: none;
     color: white;
-    margin-left: 70px;
+    margin-left: 50px;
     font-size: x-large;
    
 }
@@ -23,3 +39,4 @@
 .logout:hover {
     color: rgb(11, 229, 236);
 }
+

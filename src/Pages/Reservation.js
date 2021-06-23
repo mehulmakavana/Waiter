@@ -1,48 +1,53 @@
 import axios from "axios";
 import React, { Component } from "react";
-import "./MakeOrder.scss";
 
-class MakeOrder extends Component {
+import Navbar from '../Components/Navbar';
+
+class Reservation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      Phone: "",
       name: "",
-      table: "",
-      items: [],
+      persons: "",
       message:"",
       loading: true,
     };
   }
 
-  handlEmail(e) {
-    let email = e.target.value;
-    this.setState({ email: email });
-  }
+  
 
   handleName(e) {
     let name = e.target.value;
     this.setState({ name: name });
   }
 
-  handleTable(e) {
-    let table = e.target.value;
-    this.setState({ table: table });
+  handlPhone(e) {
+    let phone = e.target.value;
+    this.setState({ phone: phone });
   }
 
-  handleOrder(e) {
-    let email = this.state.email;
+  handlePerson(e) {
+    let persons = e.target.value;
+    this.setState({ persons: persons });
+  }
+
+
+  handleSubmit(e) {
+
+    let phone = this.state.phone;
     let name = this.state.name;
-    let table = this.state.table;
+    let persons = this.state.persons;
+
     let formdata = new FormData();
 
-    formdata.append("email", email);
+    formdata.append("phone", phone);
     formdata.append("name", name);
-    formdata.append("table", table);
+    formdata.append("persons", persons);
 
     axios({
-      url: `http://localhost:8020/order/waiter/makeorder`,
-      method: "PUT",
+      url: `http://localhost:8020/book/waiterreservation`,
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -60,7 +65,8 @@ class MakeOrder extends Component {
   render() {
     return (
       <div>
-        <h1>Make Order</h1>
+        <Navbar/>
+        <h1>Reservation</h1>
 
         <div className="mk">
           <div className="mk1">
@@ -71,37 +77,41 @@ class MakeOrder extends Component {
                   type="text"
                   className="mon2"
                   name="name"
+                 
                   onChange={(e) => this.handleName(e)}
                 />
               </div>
 
-              <div className="moe">Email Id</div>
+              <div className="moe">Phone Number</div>
               <div className="moe1">
                 <input
                   type="text"
                   className="moe2"
-                  name="email"
-                  onChange={(e) => this.handlEmail(e)}
+               maxLength="10"
+                  name="Phone"
+                  onChange={(e) => this.handlPhone(e)}
                 />
               </div>
 
-              <div className="mot">Table Number</div>
+              <div className="mot">Person</div>
               <div className="mot1">
                 <input
                   type="number"
                   className="mot2"
-                  min="1"
-                  name="table"
-                  onChange={(e) => this.handleTable(e)}
+                min="1"
+               
+                  name="person"
+                  onChange={(e) => this.handlePerson(e)}
                 />
               </div>
 
               <div className="mob">
-                <button className="mob1" onClick={(e) => this.handleOrder(e)}>
-                  Make Order
+                <button className="mob1" onClick={(e) => this.handleSubmit(e)}>
+                 Reservation
                 </button>
+                </div>
                 <div className="mks">{this.state.message}</div>
-              </div>
+           
             </div>
           </div>
         </div>
@@ -112,4 +122,4 @@ class MakeOrder extends Component {
   }
 }
 
-export default MakeOrder;
+export default Reservation;
